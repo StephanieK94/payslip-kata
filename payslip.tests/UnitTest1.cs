@@ -16,18 +16,7 @@ namespace payslip.tests
             var employeeInformation = commaSeparator.GetEmployeeInformation(employeeFile);
             
             Assert.Equal("David", employeeInformation.FirstName);
-        }
-
-        [Fact]
-        public void GivenStringGetLastNameName()
-        {
-            string employeeFile = "David,Rudd,60050,9%,01 March - 31 March";
-
-            var commaSeparation = new CommaSeparator();
-
-            var lastName = commaSeparation.GetLastNameFrom(employeeFile);
-
-            Assert.Equal("Rudd", lastName);
+            Assert.Equal("Rudd", employeeInformation.LastName);
         }
 
         [Fact]

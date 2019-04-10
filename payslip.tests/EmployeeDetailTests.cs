@@ -64,7 +64,7 @@ namespace payslip.tests
         [Fact]
         public void GivenPointFiveOrAboveNumberRoundsUpToNearestInteger()
         {
-            var calculation = 10.5d;
+            var calculation = 10.565d;
 
             var rounder = new Calculation();
 
@@ -100,7 +100,7 @@ namespace payslip.tests
         }
 
         [Fact]
-        public void GivenSalaryCalculateMonthlyIncomeTax()
+        public void GivenSalaryGetMonthlyIncomeTax()
         {
             var salary = 60050;
 
@@ -110,5 +110,20 @@ namespace payslip.tests
 
             Assert.Equal(922, incomeTax);
         }
+
+        [Fact]
+        public void GivenGrossAndIncomeAmountsGetNetIncome()
+        {
+            var grossIncome = 5004;
+            var incomeTax = 922;
+
+            var calculator = new Calculation();
+
+            var netIncome = calculator.GetNetIncome(grossIncome, incomeTax);
+
+            Assert.Equal(4082, netIncome);
+        }
+
+
     }
 }

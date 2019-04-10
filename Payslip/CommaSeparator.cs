@@ -43,12 +43,14 @@ namespace Payslip
         {
             var employeeInfo = new EmployeeInformation();
 
-            employeeInfo.FirstName = GetFirstNameFrom(employeeFile);
-            employeeInfo.LastName = GetLastNameFrom(employeeFile);
-            employeeInfo.PayPeriod = GetPayPeriodFrom(employeeFile);
-            employeeInfo.EmployeeSalary = GetEmployeeSalaryFrom(employeeFile);
-            employeeInfo.EmployeePayRate = GetPayRate(employeeFile);
+            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
 
+            employeeInfo.FirstName = employeeDetails[0];
+            employeeInfo.LastName = employeeDetails[1];
+            employeeInfo.EmployeeSalary = employeeDetails[2];
+            employeeInfo.EmployeePayRate = employeeDetails[3];
+            employeeInfo.PayPeriod = employeeDetails[4];
+            
             return employeeInfo;
         }
 

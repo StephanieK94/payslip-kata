@@ -7,7 +7,7 @@ namespace payslip.tests
     public class UnitTest1
     {
         [Fact]
-        public void GivenStringGetEmployeeDetails()
+        public void GivenStringGetEmployeeDetailsAsArray()
         {
             var testEmployee = new []{ "David", "Rudd", "60050", "9%", "01 March - 31 March" };
 

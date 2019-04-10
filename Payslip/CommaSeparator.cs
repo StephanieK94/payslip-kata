@@ -7,7 +7,7 @@ namespace Payslip
     {
         public string GetFirstNameFrom(string employeeFile)
         {
-            var employeeDetails = employeeFile.Split(",");
+            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
 
             var firstName = employeeDetails[0];
 
@@ -16,7 +16,7 @@ namespace Payslip
 
         public string GetLastNameFrom(string employeeFile)
         {
-            var employeeDetails = employeeFile.Split(",");
+            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
 
             var lastName = employeeDetails[1];
 
@@ -25,7 +25,7 @@ namespace Payslip
 
         public string GetFullNameFrom(string employeeFile)
         {
-            var employeeDetails = employeeFile.Split(",");
+            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
 
             var employeeName = employeeDetails[0] + " " + employeeDetails[1];
 

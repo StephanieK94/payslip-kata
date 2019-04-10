@@ -5,29 +5,9 @@ namespace Payslip
 {
     public class CommaSeparator
     {
-        public string GetFirstNameFrom(string employeeFile)
+        public string GetFullNameFrom(string firstName, string lastName)
         {
-            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
-
-            var firstName = employeeDetails[0];
-
-            return firstName;
-        }
-
-        public string GetLastNameFrom(string employeeFile)
-        {
-            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
-
-            var lastName = employeeDetails[1];
-
-            return lastName;
-        }
-
-        public string GetFullNameFrom(string employeeFile)
-        {
-            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
-
-            var employeeName = employeeDetails[0] + " " + employeeDetails[1];
+            var employeeName = firstName + " " + lastName;
 
             return employeeName;
         }
@@ -43,42 +23,16 @@ namespace Payslip
         {
             var employeeInfo = new EmployeeInformation();
 
-            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
+            string[] employeeDetails = GetEmployeeDetailsFrom(employeeFile);
 
             employeeInfo.FirstName = employeeDetails[0];
             employeeInfo.LastName = employeeDetails[1];
             employeeInfo.EmployeeSalary = employeeDetails[2];
             employeeInfo.EmployeePayRate = employeeDetails[3];
             employeeInfo.PayPeriod = employeeDetails[4];
+            employeeInfo.FullName = GetFullNameFrom(employeeDetails[0], employeeDetails[1]);
             
             return employeeInfo;
-        }
-
-        public string GetPayPeriodFrom(string employeeFile)
-        {
-            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
-
-            var payPeriod = employeeDetails[4];
-
-            return payPeriod;
-        }
-
-        public string GetEmployeeSalaryFrom(string employeeFile)
-        {
-            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
-
-            var salary = employeeDetails[2];
-
-            return salary;
-        }
-
-        public string GetPayRate(string employeeFile)
-        {
-            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
-
-            var payRate = employeeDetails[3];
-
-            return payRate;
         }
     }
 
@@ -89,5 +43,6 @@ namespace Payslip
         public string PayPeriod { get; set; }
         public string EmployeeSalary { get; set; }
         public string EmployeePayRate { get; set; }
+        public string FullName { get; set; }
     }
 }

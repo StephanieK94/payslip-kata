@@ -124,6 +124,18 @@ namespace payslip.tests
             Assert.Equal(4082, netIncome);
         }
 
+        [Fact]
+        public void GivenGrossIncomeAndSuperRateGetSuperAmount()
+        {
+            double gross = 5004;
+            double payRate = 9;
+            double ratePercentage = payRate / 100;
 
+            var calculator = new Calculation();
+
+            var super = calculator.GetSuperAmount(gross, ratePercentage);
+
+            Assert.Equal(450, super);
+        }
     }
 }

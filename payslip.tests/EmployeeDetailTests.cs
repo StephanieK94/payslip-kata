@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Payslip;
 using Xunit;
 
@@ -41,7 +42,7 @@ namespace payslip.tests
         {
             string salary = "60050";
 
-            var converter = new StringToNumberConverter();
+            var converter = new StringConverter();
 
             var salaryNumber = converter.ConvertStringToNumber(salary);
 
@@ -79,7 +80,7 @@ namespace payslip.tests
         {
             string payRate = "9%";
 
-            var calculator = new CalculationRounder();
+            var calculator = new StringConverter();
 
             var rate = calculator.GetTrimmedNumber(payRate);
 

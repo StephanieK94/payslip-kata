@@ -98,5 +98,17 @@ namespace payslip.tests
 
             Assert.Equal(5004, grossIncome);
         }
+
+        [Fact]
+        public void GivenSalaryCalculateMonthlyIncomeTax()
+        {
+            var salary = 60050;
+
+            var calculator = new Calculation();
+
+            var incomeTax = calculator.GetIncomeTax(salary);
+
+            Assert.Equal(922, incomeTax);
+        }
     }
 }

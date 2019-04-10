@@ -38,9 +38,9 @@ namespace payslip.tests
         }
 
         [Fact]
-        public void GivenNumberStringReturnNumber()
+        public void GivenStringReturnNumber()
         {
-            string salary = "60050";
+            var salary = "60050";
 
             var converter = new StringConverter();
 
@@ -52,9 +52,9 @@ namespace payslip.tests
         [Fact]
         public void GivenLessThanPointFiveNumberRoundsDownToNearestInteger()
         {
-            double calculation = 10.4d;
+            var calculation = 10.4d;
 
-            var rounder = new CalculationRounder();
+            var rounder = new Calculation();
 
             var roundDown = rounder.GetRoundedCalculation(calculation);
 
@@ -64,9 +64,9 @@ namespace payslip.tests
         [Fact]
         public void GivenPointFiveOrAboveNumberRoundsUpToNearestInteger()
         {
-            double calculation = 10.5d;
+            var calculation = 10.5d;
 
-            var rounder = new CalculationRounder();
+            var rounder = new Calculation();
 
             var point5 = rounder.GetRoundedCalculation(calculation);
             var point75 = rounder.GetRoundedCalculation(calculation);
@@ -78,13 +78,25 @@ namespace payslip.tests
         [Fact]
         public void GivenPayRateStringGetTrimmedString()
         {
-            string payRate = "9%";
+            var payRate = "9%";
 
             var calculator = new StringConverter();
 
             var rate = calculator.GetTrimmedNumber(payRate);
 
             Assert.Equal("9", rate);
+        }
+
+        [Fact]
+        public void GivenSalaryCalculatesGrossMonthlyIncome()
+        {
+            var salary = 60050;
+
+            var calculator = new Calculation();
+
+            var grossIncome = calculator.GetGrossIncome(salary);
+
+            Assert.Equal(5004, grossIncome);
         }
     }
 }

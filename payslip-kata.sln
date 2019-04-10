@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "payslip.tests", "payslip.tests\payslip.tests.csproj", "{37BD2B71-0EC1-462F-9470-D03C9E2A8570}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "payslip.tests", "payslip.tests\payslip.tests.csproj", "{37BD2B71-0EC1-462F-9470-D03C9E2A8570}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payslip", "Payslip\Payslip.csproj", "{941AE6E0-4428-4460-A7F6-FD69B3484265}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,9 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{37BD2B71-0EC1-462F-9470-D03C9E2A8570}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +29,23 @@ Global
 		{37BD2B71-0EC1-462F-9470-D03C9E2A8570}.Release|x64.Build.0 = Release|Any CPU
 		{37BD2B71-0EC1-462F-9470-D03C9E2A8570}.Release|x86.ActiveCfg = Release|Any CPU
 		{37BD2B71-0EC1-462F-9470-D03C9E2A8570}.Release|x86.Build.0 = Release|Any CPU
+		{941AE6E0-4428-4460-A7F6-FD69B3484265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{941AE6E0-4428-4460-A7F6-FD69B3484265}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{941AE6E0-4428-4460-A7F6-FD69B3484265}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{941AE6E0-4428-4460-A7F6-FD69B3484265}.Debug|x64.Build.0 = Debug|Any CPU
+		{941AE6E0-4428-4460-A7F6-FD69B3484265}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{941AE6E0-4428-4460-A7F6-FD69B3484265}.Debug|x86.Build.0 = Debug|Any CPU
+		{941AE6E0-4428-4460-A7F6-FD69B3484265}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{941AE6E0-4428-4460-A7F6-FD69B3484265}.Release|Any CPU.Build.0 = Release|Any CPU
+		{941AE6E0-4428-4460-A7F6-FD69B3484265}.Release|x64.ActiveCfg = Release|Any CPU
+		{941AE6E0-4428-4460-A7F6-FD69B3484265}.Release|x64.Build.0 = Release|Any CPU
+		{941AE6E0-4428-4460-A7F6-FD69B3484265}.Release|x86.ActiveCfg = Release|Any CPU
+		{941AE6E0-4428-4460-A7F6-FD69B3484265}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {371982AA-FEC8-427D-B913-4D377AD6045B}
 	EndGlobalSection
 EndGlobal

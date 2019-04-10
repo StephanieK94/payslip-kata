@@ -46,7 +46,9 @@ namespace Payslip
             employeeInfo.FirstName = GetFirstNameFrom(employeeFile);
             employeeInfo.LastName = GetLastNameFrom(employeeFile);
             employeeInfo.PayPeriod = GetPayPeriodFrom(employeeFile);
-            
+            employeeInfo.EmployeeSalary = GetEmployeeSalaryFrom(employeeFile);
+            employeeInfo.EmployeePayRate = GetPayRate(employeeFile);
+
             return employeeInfo;
         }
 
@@ -58,6 +60,24 @@ namespace Payslip
 
             return payPeriod;
         }
+
+        public string GetEmployeeSalaryFrom(string employeeFile)
+        {
+            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
+
+            var salary = employeeDetails[2];
+
+            return salary;
+        }
+
+        public string GetPayRate(string employeeFile)
+        {
+            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
+
+            var payRate = employeeDetails[3];
+
+            return payRate;
+        }
     }
 
     public class EmployeeInformation
@@ -65,5 +85,7 @@ namespace Payslip
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PayPeriod { get; set; }
+        public string EmployeeSalary { get; set; }
+        public string EmployeePayRate { get; set; }
     }
 }

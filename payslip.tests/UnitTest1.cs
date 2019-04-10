@@ -18,7 +18,21 @@ namespace payslip.tests
             Assert.Equal("David", employeeInformation.FirstName);
             Assert.Equal("Rudd", employeeInformation.LastName);
             Assert.Equal("01 March - 31 March", employeeInformation.PayPeriod);
+            Assert.Equal("60050", employeeInformation.EmployeeSalary);
+            Assert.Equal("9%", employeeInformation.EmployeePayRate);
 
+        }
+
+        [Fact]
+        public void GivenEmployeeSalaryStringReturnNumber()
+        {
+
+        }
+
+        [Fact]
+        public void GivenPayrateStringReturnNumber()
+        {
+            
         }
 
         [Fact]

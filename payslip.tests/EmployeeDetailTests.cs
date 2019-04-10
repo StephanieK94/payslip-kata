@@ -28,15 +28,17 @@ namespace payslip.tests
         }
 
 
-        //[Fact]
-        //public void GivenStringArrayOutputsStringStatement()
-        //{
-        //    string[] employee = { "David Rudd", "01 March - 31 March", "5004", "922", "4082", "450" };
+        [Fact]
+        public void GivenStringArrayOutputsStringStatement()
+        {
+            string[] employee = { "David Rudd", "01 March - 31 March", "5004", "922", "4082", "450" };
 
-        //    var statement = new StatementCompliler();
+            var statement = new StatementCompliler();
 
-        //    var employeeStatement = statement.CompileStrings(employee);
-        //}
+            var employeeStatement = statement.CompileStrings(employee);
+
+            Assert.Equal("David Rudd,01 March - 31 March,5004,922,4082,450", employeeStatement);
+        }
 
         [Fact]
         public void GivenNumberReturnString()
@@ -48,7 +50,6 @@ namespace payslip.tests
             var incomeString = incomeInteger.ToStringConverter(grossIncome);
 
             Assert.Equal("5004", incomeString);
-
         }
 
         [Fact]
@@ -164,17 +165,5 @@ namespace payslip.tests
             Assert.Equal(450, super);
         }
 
-    }
-
-    public class IntegerConverter
-    {
-        public string ToStringConverter(int grossIncome)
-        {
-            var intIncome = grossIncome;
-
-            var stringIncome = intIncome.ToString();
-
-            return stringIncome;
-        }
     }
 }

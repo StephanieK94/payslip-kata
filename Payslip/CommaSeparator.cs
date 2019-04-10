@@ -45,8 +45,18 @@ namespace Payslip
 
             employeeInfo.FirstName = GetFirstNameFrom(employeeFile);
             employeeInfo.LastName = GetLastNameFrom(employeeFile);
+            employeeInfo.PayPeriod = GetPayPeriodFrom(employeeFile);
             
             return employeeInfo;
+        }
+
+        public string GetPayPeriodFrom(string employeeFile)
+        {
+            var employeeDetails = GetEmployeeDetailsFrom(employeeFile);
+
+            var payPeriod = employeeDetails[4];
+
+            return payPeriod;
         }
     }
 
@@ -54,5 +64,6 @@ namespace Payslip
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string PayPeriod { get; set; }
     }
 }

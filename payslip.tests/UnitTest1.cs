@@ -7,7 +7,7 @@ namespace payslip.tests
     public class UnitTest1
     {
         [Fact]
-        public void GivenStringGetFirstName()
+        public void GivenStringGetEmployeeDetails()
         {
             string employeeFile = "David,Rudd,60050,9%,01 March - 31 March";
 
@@ -17,6 +17,8 @@ namespace payslip.tests
             
             Assert.Equal("David", employeeInformation.FirstName);
             Assert.Equal("Rudd", employeeInformation.LastName);
+            Assert.Equal("01 March - 31 March", employeeInformation.PayPeriod);
+
         }
 
         [Fact]

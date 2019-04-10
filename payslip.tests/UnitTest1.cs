@@ -7,29 +7,15 @@ namespace payslip.tests
     public class UnitTest1
     {
         [Fact]
-        public void GivenStringGetEmployeeDetailsAsArray()
-        {
-            var testEmployee = new []{ "David", "Rudd", "60050", "9%", "01 March - 31 March" };
-
-            string employeeFile = "David,Rudd,60050,9%,01 March - 31 March";
-
-            var commaSeparator = new CommaSeparator();
-
-            var employeeDetails = commaSeparator.GetEmployeeDetailsFrom(employeeFile);
-
-            Assert.Equal(testEmployee, employeeDetails);
-        }
-
-        [Fact]
         public void GivenStringGetFirstName()
         {
             string employeeFile = "David,Rudd,60050,9%,01 March - 31 March";
 
             var commaSeparator = new CommaSeparator();
 
-            var firstName = commaSeparator.GetFirstNameFrom(employeeFile);
-
-            Assert.Equal("David", firstName);
+            var employeeInformation = commaSeparator.GetEmployeeInformation(employeeFile);
+            
+            Assert.Equal("David", employeeInformation.FirstName);
         }
 
         [Fact]

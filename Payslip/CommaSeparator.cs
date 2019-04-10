@@ -32,12 +32,26 @@ namespace Payslip
             return employeeName;
         }
 
-        public string[] GetEmployeeDetailsFrom(string employeeFile)
+        private string[] GetEmployeeDetailsFrom(string employeeFile)
         {
             string[] employeeDetails = employeeFile.Split(",");
 
-
             return employeeDetails;
         }
+
+        public EmployeeInformation GetEmployeeInformation(string employeeFile)
+        {
+            var employeeInfo = new EmployeeInformation();
+
+            var firstName = GetFirstNameFrom(employeeFile);
+            employeeInfo.FirstName = firstName;
+
+            return employeeInfo;
+        }
+    }
+
+    public class EmployeeInformation
+    {
+        public string FirstName { get; set; }
     }
 }

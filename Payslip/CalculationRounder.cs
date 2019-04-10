@@ -12,5 +12,14 @@ namespace Payslip
 
             return outputtedDouble;
         }
+
+        public string GetTrimmedNumber(string payRate)
+        {
+            var employeePayRate = payRate;
+
+            var rate = payRate.Trim('%');
+
+            return rate;
+        }
     }
 }

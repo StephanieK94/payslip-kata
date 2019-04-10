@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using Newtonsoft.Json;
 using Payslip;
 using Xunit;
 
@@ -23,6 +25,30 @@ namespace payslip.tests
             Assert.Equal(expectedEmployee[2], employeeInformation.EmployeeSalary);
             Assert.Equal(expectedEmployee[3], employeeInformation.EmployeePayRate);
             Assert.Equal(expectedEmployee[4], employeeInformation.PayPeriod);
+        }
+
+
+        //[Fact]
+        //public void GivenStringArrayOutputsStringStatement()
+        //{
+        //    string[] employee = { "David Rudd", "01 March - 31 March", "5004", "922", "4082", "450" };
+
+        //    var statement = new StatementCompliler();
+
+        //    var employeeStatement = statement.CompileStrings(employee);
+        //}
+
+        [Fact]
+        public void GivenNumberReturnString()
+        {
+            int grossIncome = 5004;
+
+            var incomeInteger = new IntegerConverter();
+
+            var incomeString = incomeInteger.ToStringConverter(grossIncome);
+
+            Assert.Equal("5004", incomeString);
+
         }
 
         [Fact]
@@ -136,6 +162,19 @@ namespace payslip.tests
             var super = calculator.GetSuperAmount(gross, ratePercentage);
 
             Assert.Equal(450, super);
+        }
+
+    }
+
+    public class IntegerConverter
+    {
+        public string ToStringConverter(int grossIncome)
+        {
+            var intIncome = grossIncome;
+
+            var stringIncome = intIncome.ToString();
+
+            return stringIncome;
         }
     }
 }

@@ -16,14 +16,13 @@ namespace payslip.tests
 
             string[] expectedEmployee = { "David" , "Rudd" , "60050" , "9%" , "01 March - 31 March" };
 
-            var commaSeparator = new CommaSeparator();
+            var commaSeparator = new EmployeeDetails();
 
             var employeeInformation = commaSeparator.GetEmployeeInformation(employeeFile);
 
-            Assert.Equal(expectedEmployee[0], employeeInformation.FirstName);
-            Assert.Equal(expectedEmployee[1], employeeInformation.LastName);
-            Assert.Equal(expectedEmployee[2], employeeInformation.EmployeeSalary);
-            Assert.Equal(expectedEmployee[3], employeeInformation.EmployeePayRate);
+            Assert.Equal("David Rudd", employeeInformation.FullName);
+            Assert.Equal(expectedEmployee[2], employeeInformation.Salary);
+            Assert.Equal(expectedEmployee[3], employeeInformation.PayRate);
             Assert.Equal(expectedEmployee[4], employeeInformation.PayPeriod);
         }
 
@@ -33,7 +32,7 @@ namespace payslip.tests
         {
             string[] employee = { "David Rudd", "01 March - 31 March", "5004", "922", "4082", "450" };
 
-            var statement = new StatementCompliler();
+            var statement = new StatementCompiler();
 
             var employeeStatement = statement.CompileStrings(employee);
 
@@ -45,7 +44,7 @@ namespace payslip.tests
         {
             int grossIncome = 5004;
 
-            var incomeInteger = new IntegerConverter();
+            var incomeInteger = new Calculation();
 
             var incomeString = incomeInteger.ToStringConverter(grossIncome);
 
@@ -57,7 +56,7 @@ namespace payslip.tests
         {
             string employeeFile = "David,Rudd,60050,9%,01 March - 31 March";
 
-            var commaSeparator = new CommaSeparator();
+            var commaSeparator = new EmployeeDetails();
 
             var employeeInformation = commaSeparator.GetEmployeeInformation(employeeFile);
 
@@ -69,7 +68,7 @@ namespace payslip.tests
         {
             var salary = "60050";
 
-            var converter = new StringConverter();
+            var converter = new Calculation();
 
             var salaryNumber = converter.ConvertStringToNumber(salary);
 
@@ -107,63 +106,23 @@ namespace payslip.tests
         {
             var payRate = "9%";
 
-            var calculator = new StringConverter();
+            var calculator = new Calculation();
 
             var rate = calculator.GetTrimmedNumber(payRate);
 
             Assert.Equal("9", rate);
         }
 
-        [Fact]
-        public void GivenSalaryCalculatesGrossMonthlyIncome()
-        {
-            var salary = 60050;
+        //[Fact]
+        //public void GivenEmployeeDetailsStringGetFullEmployeeInformation()
+        //{
+        //    string employeeFile = "David,Rudd,60050,9%,01 March - 31 March";
 
-            var calculator = new Calculation();
+        //    var employee = new EmployeeInformation();
 
-            var grossIncome = calculator.GetGrossIncome(salary);
+            
 
-            Assert.Equal(5004, grossIncome);
-        }
-
-        [Fact]
-        public void GivenSalaryGetMonthlyIncomeTax()
-        {
-            var salary = 60050;
-
-            var calculator = new Calculation();
-
-            var incomeTax = calculator.GetIncomeTax(salary);
-
-            Assert.Equal(922, incomeTax);
-        }
-
-        [Fact]
-        public void GivenGrossAndIncomeAmountsGetNetIncome()
-        {
-            var grossIncome = 5004;
-            var incomeTax = 922;
-
-            var calculator = new Calculation();
-
-            var netIncome = calculator.GetNetIncome(grossIncome, incomeTax);
-
-            Assert.Equal(4082, netIncome);
-        }
-
-        [Fact]
-        public void GivenGrossIncomeAndSuperRateGetSuperAmount()
-        {
-            double gross = 5004;
-            double payRate = 9;
-            double ratePercentage = payRate / 100;
-
-            var calculator = new Calculation();
-
-            var super = calculator.GetSuperAmount(gross, ratePercentage);
-
-            Assert.Equal(450, super);
-        }
-
+            
+        //}
     }
 }

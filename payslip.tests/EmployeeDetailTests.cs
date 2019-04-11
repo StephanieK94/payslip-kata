@@ -10,8 +10,7 @@ namespace payslip.tests
         public void GivenEmployeeInformationGetStringStatement()
         {
             EmployeeInformation employee = new EmployeeInformation();
-            employee.FirstName = "David";
-            employee.LastName = "Rudd";
+            employee.FullName = "David Rudd";
             employee.Salary = "60050";
             employee.PayRate = "9";
             employee.PayPeriod = "01 March – 31 March";
@@ -20,7 +19,7 @@ namespace payslip.tests
             employee.NetIncome = "4082";
             employee.SuperAmount = "450";
 
-            var compiler = new PayslipCompiler();
+            var compiler = new StatementCompiler();
             var outputStatement = compiler.CompileStrings(employee);
 
             Assert.Equal("David Rudd,01 March – 31 March,5004,922,4082,450", outputStatement);
@@ -31,14 +30,24 @@ namespace payslip.tests
         [Fact]
         public void GivenNameStringsReturnFullName()
         {
-            var firstName = "David";
-            var lastName = "Rudd";
+            string firstName = "David";
+            string lastName = "Rudd";
 
-            var payslipInfo = new PayslipCompiler();
+            var converter = new EmployeeDetails();
+            string fullName = converter.GetFullNameFrom(firstName, lastName);
 
-            var fullName2 = payslipInfo.GetFullNameFrom(firstName, lastName);
+            Assert.Equal("David Rudd", fullName);
+        }
 
-            Assert.Equal("David Rudd", fullName2);
+        [Fact]
+        public void GivenStringReturnNumber()
+        {
+            var salary = "60050";
+
+            var converter = new Calculation();
+            var salaryNumber = converter.ConvertStringToNumber(salary);
+
+            Assert.Equal(60050, salaryNumber);
         }
 
         [Fact]
@@ -74,19 +83,10 @@ namespace payslip.tests
         {
             int number = 500;
 
+            var converter = new Calculation();
             var toString = number.ToString();
 
             Assert.Equal("500", toString);
-        }
-
-        [Fact]
-        public void GivenStringReturnNumber()
-        {
-            var salary = "60050";
-
-            var salary2 = int.Parse(salary);
-
-            Assert.Equal(60050, salary2);
         }
     }
 }

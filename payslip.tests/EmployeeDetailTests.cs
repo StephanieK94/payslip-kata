@@ -25,7 +25,16 @@ namespace payslip.tests
             Assert.Equal("David Rudd,01 March – 31 March,5004,922,4082,450", outputStatement);
         }
 
-        
+        [Fact]
+        public void GivenNumberReturnString()
+        {
+            int grossIncome = 5004;
+
+            var incomeInteger = new Calculation();
+            var incomeString = incomeInteger.ToStringConverter(grossIncome);
+
+            Assert.Equal("5004", incomeString);
+        }
 
         [Fact]
         public void GivenNameStringsReturnFullName()
@@ -84,7 +93,7 @@ namespace payslip.tests
             int number = 500;
 
             var converter = new Calculation();
-            var toString = number.ToString();
+            var toString = converter.ToStringConverter(number);
 
             Assert.Equal("500", toString);
         }

@@ -6,7 +6,11 @@ namespace Payslip
     {
         public double ConvertStringToNumber(string salary)
         {
-            return double.Parse(salary);
+            var salaryString = salary;
+
+            var value = double.Parse(salaryString);
+
+            return value;
         }
 
         public string GetTrimmedNumber(string payRate)

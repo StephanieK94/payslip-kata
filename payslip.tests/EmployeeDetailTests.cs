@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Newtonsoft.Json;
 using Payslip;
 using Xunit;
 
@@ -9,34 +6,36 @@ namespace payslip.tests
 {
     public class EmployeeDetailTests
     {
-        [Fact]
-        public void GivenStringGetEmployeeDetails()
-        {
-            string employeeFile = "David,Rudd,60050,9%,01 March - 31 March";
+        //[Fact]
+        //public void GivenStringArrayOutputsStringStatement()
+        //{
+        //    string[] employee = { "David Rudd", "01 March - 31 March", "5004", "922", "4082", "450" };
 
-            string[] expectedEmployee = { "David" , "Rudd" , "60050" , "9%" , "01 March - 31 March" };
+        //    var statement = new StatementCompiler();
 
-            var commaSeparator = new EmployeeDetails();
+        //    var employeeStatement = statement.CompileStrings(employee);
 
-            var employeeInformation = commaSeparator.GetEmployeeInformation(employeeFile);
-
-            Assert.Equal("David Rudd", employeeInformation.FullName);
-            Assert.Equal(expectedEmployee[2], employeeInformation.Salary);
-            Assert.Equal(expectedEmployee[3], employeeInformation.PayRate);
-            Assert.Equal(expectedEmployee[4], employeeInformation.PayPeriod);
-        }
-
+        //    Assert.Equal("David Rudd,01 March - 31 March,5004,922,4082,450", employeeStatement);
+        //}
 
         [Fact]
-        public void GivenStringArrayOutputsStringStatement()
+        public void GivenEmployeeInformationGetStringStatement()
         {
-            string[] employee = { "David Rudd", "01 March - 31 March", "5004", "922", "4082", "450" };
+            EmployeeInformation employee = new EmployeeInformation();
+            employee.FullName = "David Rudd";
+            employee.Salary = "60050";
+            employee.PayRate = "9";
+            employee.PayPeriod = "01 March – 31 March";
+            employee.GrossIncome = "5004";
+            employee.IncomeTax = "922";
+            employee.NetIncome = "4082";
+            employee.SuperAmount = "450";
 
-            var statement = new StatementCompiler();
+            var compiler = new StatementCompiler();
 
-            var employeeStatement = statement.CompileStrings(employee);
+            var outputStatement = compiler.CompileStrings(employee);
 
-            Assert.Equal("David Rudd,01 March - 31 March,5004,922,4082,450", employeeStatement);
+            Assert.Equal("David Rudd,01 March – 31 March,5004,922,4082,450", outputStatement);
         }
 
         [Fact]
@@ -52,15 +51,15 @@ namespace payslip.tests
         }
 
         [Fact]
-        public void GivenStringReturnFullName()
+        public void GivenNameStringsReturnFullName()
         {
-            string employeeFile = "David,Rudd,60050,9%,01 March - 31 March";
+            string firstName = "David";
+            string lastName = "Rudd";
 
-            var commaSeparator = new EmployeeDetails();
+            var converter = new EmployeeDetails();
+            string fullName = converter.GetFullNameFrom(firstName, lastName);
 
-            var employeeInformation = commaSeparator.GetEmployeeInformation(employeeFile);
-
-            Assert.Equal("David Rudd", employeeInformation.FullName);
+            Assert.Equal("David Rudd", fullName);
         }
 
         [Fact]
@@ -76,29 +75,21 @@ namespace payslip.tests
         }
 
         [Fact]
-        public void GivenLessThanPointFiveNumberRoundsDownToNearestInteger()
+        public void GivenDecimalNumberGetsRoundedNumberToNearestInteger()
         {
-            var calculation = 10.4d;
+            var pointFourNine = 10.49;
+            var pointFive = 10.5;
+            var pointFiveOne = 10.51;
 
             var rounder = new Calculation();
 
-            var roundDown = rounder.GetRoundedCalculation(calculation);
+            var roundDown = rounder.GetRoundedCalculation(pointFourNine);
+            var roundMiddleCalculation = rounder.GetRoundedCalculation(pointFive);
+            var roundUp = rounder.GetRoundedCalculation(pointFiveOne);
 
-            Assert.Equal(10.0, roundDown);
-        }
-
-        [Fact]
-        public void GivenPointFiveOrAboveNumberRoundsUpToNearestInteger()
-        {
-            var calculation = 10.565d;
-
-            var rounder = new Calculation();
-
-            var point5 = rounder.GetRoundedCalculation(calculation);
-            var point75 = rounder.GetRoundedCalculation(calculation);
-
-            Assert.Equal(11, point5);
-            Assert.Equal(11, point75);
+            Assert.Equal(10, roundDown);
+            Assert.Equal(11, roundMiddleCalculation);
+            Assert.Equal(11, roundUp);
         }
 
         [Fact]
@@ -113,16 +104,15 @@ namespace payslip.tests
             Assert.Equal("9", rate);
         }
 
-        //[Fact]
-        //public void GivenEmployeeDetailsStringGetFullEmployeeInformation()
-        //{
-        //    string employeeFile = "David,Rudd,60050,9%,01 March - 31 March";
+        [Fact]
+        public void GivenIntReturnString()
+        {
+            int number = 500;
+            var converter = new Calculation();
 
-        //    var employee = new EmployeeInformation();
+            var toString = converter.ToStringConverter(number);
 
-            
-
-            
-        //}
+            Assert.Equal("500", toString);
+        }
     }
 }

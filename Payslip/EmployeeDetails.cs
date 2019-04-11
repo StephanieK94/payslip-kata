@@ -156,14 +156,6 @@ namespace Payslip
             return employeeInfo;
         }
 
-        //public string GetStatement(string employeeFile)
-        //{
-        //    var employee = employeeFile;
-
-        //    var employeeInfo = GetEmployeeInformation(employee);
-
-        //    var calculations = 
-        //}
     }
 
     public class EmployeeInformation

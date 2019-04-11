@@ -6,18 +6,6 @@ namespace payslip.tests
 {
     public class EmployeeDetailTests
     {
-        //[Fact]
-        //public void GivenStringArrayOutputsStringStatement()
-        //{
-        //    string[] employee = { "David Rudd", "01 March - 31 March", "5004", "922", "4082", "450" };
-
-        //    var statement = new StatementCompiler();
-
-        //    var employeeStatement = statement.CompileStrings(employee);
-
-        //    Assert.Equal("David Rudd,01 March - 31 March,5004,922,4082,450", employeeStatement);
-        //}
-
         [Fact]
         public void GivenEmployeeInformationGetStringStatement()
         {
@@ -32,7 +20,6 @@ namespace payslip.tests
             employee.SuperAmount = "450";
 
             var compiler = new StatementCompiler();
-
             var outputStatement = compiler.CompileStrings(employee);
 
             Assert.Equal("David Rudd,01 March – 31 March,5004,922,4082,450", outputStatement);
@@ -44,7 +31,6 @@ namespace payslip.tests
             int grossIncome = 5004;
 
             var incomeInteger = new Calculation();
-
             var incomeString = incomeInteger.ToStringConverter(grossIncome);
 
             Assert.Equal("5004", incomeString);
@@ -68,7 +54,6 @@ namespace payslip.tests
             var salary = "60050";
 
             var converter = new Calculation();
-
             var salaryNumber = converter.ConvertStringToNumber(salary);
 
             Assert.Equal(60050, salaryNumber);
@@ -82,7 +67,6 @@ namespace payslip.tests
             var pointFiveOne = 10.51;
 
             var rounder = new Calculation();
-
             var roundDown = rounder.GetRoundedCalculation(pointFourNine);
             var roundMiddleCalculation = rounder.GetRoundedCalculation(pointFive);
             var roundUp = rounder.GetRoundedCalculation(pointFiveOne);
@@ -98,7 +82,6 @@ namespace payslip.tests
             var payRate = "9%";
 
             var calculator = new Calculation();
-
             var rate = calculator.GetTrimmedNumber(payRate);
 
             Assert.Equal("9", rate);
@@ -108,8 +91,8 @@ namespace payslip.tests
         public void GivenIntReturnString()
         {
             int number = 500;
-            var converter = new Calculation();
 
+            var converter = new Calculation();
             var toString = converter.ToStringConverter(number);
 
             Assert.Equal("500", toString);

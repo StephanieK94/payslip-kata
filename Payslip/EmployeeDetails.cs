@@ -139,8 +139,8 @@ namespace Payslip
         public EmployeeInformation GetEmployeeInformation(string employeeFile)
         {
             var employeeInfo = new EmployeeInformation();
-            var calculation = new Calculation();
 
+            var calculation = new Calculation();
             string[] employeeOnFile = SeparateCommaDelimitedString(employeeFile);
 
             employeeInfo.FullName = GetFullNameFrom(employeeOnFile[0], employeeOnFile[1]);

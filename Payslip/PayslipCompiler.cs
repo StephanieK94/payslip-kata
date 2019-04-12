@@ -2,7 +2,7 @@ using System;
 
 namespace Payslip
 {
-    public class StatementCompiler
+    public class PayslipCompiler
     {
         public string CompileStrings(EmployeeInformation employee)
         {

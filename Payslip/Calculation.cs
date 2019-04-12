@@ -4,43 +4,26 @@ namespace Payslip
 {
     public class Calculation
     {
-        public double ConvertStringToNumber(string salary)
-        {
-            return double.Parse(salary);
-        }
-
         public string GetTrimmedNumber(string payRate)
         {
-            var employeePayRate = payRate;
-
-            var rate = employeePayRate.Trim('%');
-
-            return rate;
+            return payRate.Trim('%');
         }
 
-        public int GetRoundedCalculation(double calculation)
+        public int GetRoundedCalculationAsInteger(double calculation)
         {
-            var inputtedDouble = calculation;
+            var outputtedDouble = Math.Round(calculation, MidpointRounding.AwayFromZero);
 
-            var outputtedDouble = Math.Round(inputtedDouble, MidpointRounding.AwayFromZero);
-
-            var result = Convert.ToInt32(outputtedDouble);
-
-            return result;
+            return Convert.ToInt32(outputtedDouble);
         }
 
         public string GetGrossIncome(string salary)
         {
-            var grossMonthlyIncome = double.Parse(salary) / 12;
-
-            var roundedGrossMonthlyIncome = GetRoundedCalculation(grossMonthlyIncome).ToString();
-
-            return roundedGrossMonthlyIncome;
+            return GetRoundedCalculationAsInteger(double.Parse(salary) / 12).ToString();
         }
 
         public string GetIncomeTax(string salary)
         {
-            var employeeSalary = ConvertStringToNumber(salary);
+            var employeeSalary = double.Parse(salary);
 
             double monthlyIncomeTax = 0;
 
@@ -69,36 +52,21 @@ namespace Payslip
                 monthlyIncomeTax = (((employeeSalary - 180000) * 0.45) + 54547) / 12;
             }
 
-            var roundedIncomeTax = GetRoundedCalculation(monthlyIncomeTax).ToString();
-            //var resultString = ToStringConverter(roundedIncomeTax);
-
-            return roundedIncomeTax;
+            return GetRoundedCalculationAsInteger(monthlyIncomeTax).ToString();
         }
 
         public string GetNetIncome(string income, string tax)
         {
-            var grossIncome = ConvertStringToNumber(income);
-            var incomeTax = ConvertStringToNumber(tax);
+            var netIncome = (double.Parse(income) - double.Parse(tax));
 
-            var netIncome = grossIncome - incomeTax;
-            var result = GetRoundedCalculation(netIncome).ToString();
-
-            //var resultString = ToStringConverter(result);
-
-            return result;
+            return GetRoundedCalculationAsInteger(netIncome).ToString();
         }
 
-        public string GetSuperAmount(string gross, string payRate)
+        public string GetSuperAmount(string income, string payRate)
         {
-            var grossIncome = ConvertStringToNumber(gross);
-            var superRate = ConvertStringToNumber(payRate) / 100;
+            var superAmount = int.Parse(income) * int.Parse(payRate) / 100;
 
-            var superAmount = grossIncome * superRate;
-
-            var result = GetRoundedCalculation(superAmount).ToString();
-            //var resultString = ToStringConverter(result);
-
-            return result;
+            return GetRoundedCalculationAsInteger(superAmount).ToString();
         }
 
         //public string ToStringConverter(int grossIncome)

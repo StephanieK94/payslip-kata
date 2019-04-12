@@ -10,5 +10,14 @@
         public string IncomeTax { get; set; }
         public string NetIncome { get; set; }
         public string SuperAmount { get; set; }
+
+        public string GetTrimmedNumber(string payRate)
+        {
+            var employeePayRate = payRate;
+
+            var rate = employeePayRate.Trim('%');
+
+            return rate;
+        }
     }
 }

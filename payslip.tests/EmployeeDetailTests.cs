@@ -19,7 +19,7 @@ namespace payslip.tests
             employee.NetIncome = "4082";
             employee.SuperAmount = "450";
 
-            var compiler = new StatementCompiler();
+            var compiler = new PayslipCompiler();
             var outputStatement = compiler.CompileStrings(employee);
 
             Assert.Equal("David Rudd,01 March – 31 March,5004,922,4082,450", outputStatement);
@@ -39,16 +39,6 @@ namespace payslip.tests
             Assert.Equal("David Rudd", fullName);
         }
 
-        [Fact]
-        public void GivenStringReturnNumber()
-        {
-            var salary = "60050";
-
-            var converter = new Calculation();
-            var salaryNumber = converter.ConvertStringToNumber(salary);
-
-            Assert.Equal(60050, salaryNumber);
-        }
 
         [Fact]
         public void GivenDecimalNumberGetsRoundedNumberToNearestInteger()
@@ -58,9 +48,9 @@ namespace payslip.tests
             var pointFiveOne = 10.51;
 
             var rounder = new Calculation();
-            var roundDown = rounder.GetRoundedCalculation(pointFourNine);
-            var roundMiddleCalculation = rounder.GetRoundedCalculation(pointFive);
-            var roundUp = rounder.GetRoundedCalculation(pointFiveOne);
+            var roundDown = rounder.GetRoundedCalculationAsInteger(pointFourNine);
+            var roundMiddleCalculation = rounder.GetRoundedCalculationAsInteger(pointFive);
+            var roundUp = rounder.GetRoundedCalculationAsInteger(pointFiveOne);
 
             Assert.Equal(10, roundDown);
             Assert.Equal(11, roundMiddleCalculation);
@@ -75,17 +65,6 @@ namespace payslip.tests
             var superRate = payRate.Trim('%');
 
             Assert.Equal("9", superRate);
-        }
-
-        [Fact]
-        public void GivenIntReturnString()
-        {
-            int number = 500;
-
-            var converter = new Calculation();
-            var toString = number.ToString();
-
-            Assert.Equal("500", toString);
         }
     }
 }

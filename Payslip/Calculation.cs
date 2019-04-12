@@ -4,26 +4,9 @@ namespace Payslip
 {
     public class Calculation
     {
-        
-
-        //public string[] EmployeeCalculations(EmployeeInformation employee, CalculationInformation foo)
-        //{
-        //    GrossIncome = GetGrossIncome(employee.Salary);
-        //    IncomeTax = GetIncomeTax(employee.Salary);
-        //    NetIncome = GetNetIncome(GrossIncome, IncomeTax);
-        //    SuperAmount = GetSuperAmount(GrossIncome, employee.PayRate);
-        //}
-
-        public string GetTrimmedNumber(string payRate)
-        {
-            return payRate.Trim('%');
-        }
-
         public int GetRoundedCalculationAsInteger(double calculation)
         {
-            var outputtedDouble = Math.Round(calculation, MidpointRounding.AwayFromZero);
-
-            return Convert.ToInt32(outputtedDouble);
+            return Convert.ToInt32(Math.Round(calculation, MidpointRounding.AwayFromZero));
         }
 
         public string GetGrossIncome(string salary)
@@ -74,7 +57,7 @@ namespace Payslip
 
         public string GetSuperAmount(string income, string payRate)
         {
-            var superRate = GetTrimmedNumber(payRate);
+            var superRate = payRate.Trim('%');
 
             var superAmount = int.Parse(income) * int.Parse(superRate) / 100;
 

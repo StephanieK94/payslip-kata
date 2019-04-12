@@ -10,17 +10,21 @@ namespace payslip.tests
         public void GivenEmployeeInformationGetStringStatement()
         {
             EmployeeInformation employee = new EmployeeInformation();
-            employee.FullName = "David Rudd";
+            CalculationInformation calculation = new CalculationInformation();
+
+            employee.FirstName = "David";
+            employee.LastName = "Rudd";
             employee.Salary = "60050";
-            employee.PayRate = "9";
+            employee.PayRate = "9%";
             employee.PayPeriod = "01 March – 31 March";
-            employee.GrossIncome = "5004";
-            employee.IncomeTax = "922";
-            employee.NetIncome = "4082";
-            employee.SuperAmount = "450";
 
             var compiler = new PayslipCompiler();
-            var outputStatement = compiler.CompileStrings(employee);
+
+            var calculator = new Calculation();
+
+            calculation = calculator.GetCalculations(employee);
+
+            var outputStatement = compiler.CompileStrings(employee, calculation);
 
             Assert.Equal("David Rudd,01 March – 31 March,5004,922,4082,450", outputStatement);
         }
@@ -33,8 +37,8 @@ namespace payslip.tests
             string firstName = "David";
             string lastName = "Rudd";
 
-            var converter = new EmployeeDetails();
-            string fullName = converter.GetFullNameFrom(firstName, lastName);
+            var fullNameCompiler = new PayslipCompiler();
+            string fullName = fullNameCompiler.GetFullNameFrom(firstName, lastName);
 
             Assert.Equal("David Rudd", fullName);
         }

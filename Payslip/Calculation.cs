@@ -4,6 +4,16 @@ namespace Payslip
 {
     public class Calculation
     {
+        
+
+        //public string[] EmployeeCalculations(EmployeeInformation employee, CalculationInformation foo)
+        //{
+        //    GrossIncome = GetGrossIncome(employee.Salary);
+        //    IncomeTax = GetIncomeTax(employee.Salary);
+        //    NetIncome = GetNetIncome(GrossIncome, IncomeTax);
+        //    SuperAmount = GetSuperAmount(GrossIncome, employee.PayRate);
+        //}
+
         public string GetTrimmedNumber(string payRate)
         {
             return payRate.Trim('%');
@@ -55,29 +65,34 @@ namespace Payslip
             return GetRoundedCalculationAsInteger(monthlyIncomeTax).ToString();
         }
 
-        public string GetNetIncome(string income, string tax)
+        public string GetNetIncome(string grossIncome, string incomeTax)
         {
-            var netIncome = (double.Parse(income) - double.Parse(tax));
+            var netIncome = (double.Parse(grossIncome) - double.Parse(incomeTax));
 
             return GetRoundedCalculationAsInteger(netIncome).ToString();
         }
 
         public string GetSuperAmount(string income, string payRate)
         {
-            var superAmount = int.Parse(income) * int.Parse(payRate) / 100;
+            var superRate = GetTrimmedNumber(payRate);
+
+            var superAmount = int.Parse(income) * int.Parse(superRate) / 100;
 
             return GetRoundedCalculationAsInteger(superAmount).ToString();
         }
 
-        //public string ToStringConverter(int grossIncome)
-        //{
-        //    var intIncome = grossIncome;
+        public CalculationInformation GetCalculations(EmployeeInformation employeeInformation)
+        {
+            CalculationInformation calculatedEmployee = new CalculationInformation();
 
-        //    var stringIncome = intIncome.ToString();
+            calculatedEmployee.GrossIncome = GetGrossIncome(employeeInformation.Salary);
+            calculatedEmployee.IncomeTax = GetIncomeTax(employeeInformation.Salary);
+            calculatedEmployee.NetIncome = GetNetIncome(calculatedEmployee.GrossIncome, calculatedEmployee.IncomeTax);
+            calculatedEmployee.SuperAmount =
+                GetSuperAmount(calculatedEmployee.GrossIncome, employeeInformation.PayRate);
 
-        //    return stringIncome;
-        //}
-
+            return calculatedEmployee;
+        }
     }
 
 }

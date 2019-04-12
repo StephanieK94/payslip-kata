@@ -4,19 +4,28 @@ namespace Payslip
 {
     public class PayslipCompiler
     {
-        public string CompileStrings(EmployeeInformation employee)
+        public string FullName { get; set; }
+
+        
+
+        public string CompileStrings(EmployeeInformation employee, CalculationInformation calculations)
         {
-            EmployeeInformation employeeInfo = employee;
+            FullName = GetFullNameFrom(employee.FirstName, employee.LastName);
 
             string[] employeeStrings =
             {
-                employeeInfo.FullName, employeeInfo.PayPeriod, employeeInfo.GrossIncome, employeeInfo.IncomeTax,
-                employeeInfo.NetIncome, employeeInfo.SuperAmount
+                FullName, employee.PayPeriod, calculations.GrossIncome, calculations.IncomeTax,
+                calculations.NetIncome, calculations.SuperAmount
             };
 
             string employeeStatement = String.Join(",", employeeStrings);
 
             return employeeStatement;
+        }
+
+        public string GetFullNameFrom(string firstName, string lastName)
+        {
+            return firstName + " " + lastName;
         }
     }
 }

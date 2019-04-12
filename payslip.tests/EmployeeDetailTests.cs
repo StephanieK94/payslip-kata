@@ -7,7 +7,7 @@ namespace payslip.tests
     public class EmployeeDetailTests
     {
         [Fact]
-        public void GivenEmployeeInformationAndCalculationInformationGetStringStatement()
+        public void GivenEmployeeInformationAndCalculationInformationCompilesStrings()
         {
             EmployeeInformation employee = new EmployeeInformation();
             CalculationInformation calculation = new CalculationInformation();
@@ -31,28 +31,6 @@ namespace payslip.tests
         }
 
         [Fact]
-        public void GivenEmployeeInformationGetCalculationInformation()
-        {
-            EmployeeInformation employee = new EmployeeInformation();
-            CalculationInformation calculation = new CalculationInformation();
-
-            employee.FirstName = "David";
-            employee.LastName = "Rudd";
-            employee.Salary = "60050";
-            employee.PayRate = "9%";
-            employee.PayPeriod = "01 March – 31 March";
-
-            var calculator = new Calculation();
-
-            calculation = calculator.GetCalculations(employee);
-
-            Assert.Equal("5004", calculation.GrossIncome);
-            Assert.Equal("922", calculation.IncomeTax);
-            Assert.Equal("4082", calculation.NetIncome);
-            Assert.Equal("450", calculation.SuperAmount);
-        }
-
-        [Fact]
         public void GivenNameStringsReturnFullName()
         {
             string firstName = "David";
@@ -62,16 +40,6 @@ namespace payslip.tests
             string fullName = fullNameCompiler.GetFullNameFrom(firstName, lastName);
 
             Assert.Equal("David Rudd", fullName);
-        }
-
-        [Fact]
-        public void GivenPayRateStringGetTrimmedString()
-        {
-            var payRate = "9%";
-
-            var superRate = payRate.Trim('%');
-
-            Assert.Equal("9", superRate);
         }
     }
 }

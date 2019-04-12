@@ -6,6 +6,28 @@ namespace payslip.tests
     public class CalculationTests
     {
         [Fact]
+        public void GivenEmployeeInformationGetsCalculations()
+        {
+            EmployeeInformation employee = new EmployeeInformation();
+            CalculationInformation calculation = new CalculationInformation();
+
+            employee.FirstName = "David";
+            employee.LastName = "Rudd";
+            employee.Salary = "60050";
+            employee.PayRate = "9%";
+            employee.PayPeriod = "01 March – 31 March";
+
+            var calculator = new Calculation();
+            
+            calculation = calculator.GetCalculations(employee);
+
+            Assert.Equal("5004", calculation.GrossIncome);
+            Assert.Equal("922", calculation.IncomeTax);
+            Assert.Equal("4082", calculation.NetIncome);
+            Assert.Equal("450", calculation.SuperAmount);
+        }
+
+        [Fact]
         public void GivenDecimalNumberGetsRoundedNumberToNearestInteger()
         {
             var pointFourNine = 10.49;

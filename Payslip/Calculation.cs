@@ -6,11 +6,7 @@ namespace Payslip
     {
         public double ConvertStringToNumber(string salary)
         {
-            var salaryString = salary;
-
-            var value = double.Parse(salaryString);
-
-            return value;
+            return double.Parse(salary);
         }
 
         public string GetTrimmedNumber(string payRate)
@@ -35,14 +31,11 @@ namespace Payslip
 
         public string GetGrossIncome(string salary)
         {
-            var employeeSalary = ConvertStringToNumber(salary);
+            var grossMonthlyIncome = double.Parse(salary) / 12;
 
-            var grossMonthlyIncome = employeeSalary / 12;
+            var roundedGrossMonthlyIncome = GetRoundedCalculation(grossMonthlyIncome).ToString();
 
-            var roundedGrossMonthlyIncome = GetRoundedCalculation(grossMonthlyIncome);
-            var resultString = ToStringConverter(roundedGrossMonthlyIncome);
-
-            return resultString;
+            return roundedGrossMonthlyIncome;
         }
 
         public string GetIncomeTax(string salary)
@@ -56,30 +49,30 @@ namespace Payslip
                 monthlyIncomeTax = 0;
             }
 
-            if (employeeSalary >=18201 && employeeSalary <= 37000)
+            if (employeeSalary >= 18201 && employeeSalary <= 37000)
             {
-                monthlyIncomeTax = ((employeeSalary - 18200) * 0.19 )/ 12;
+                monthlyIncomeTax = ((employeeSalary - 18200) * 0.19) / 12;
             }
 
-            if (employeeSalary >=37001 && employeeSalary <= 80000)
+            if (employeeSalary >= 37001 && employeeSalary <= 80000)
             {
-                monthlyIncomeTax = (((employeeSalary - 37000) * 0.325)+3572) / 12;
+                monthlyIncomeTax = (((employeeSalary - 37000) * 0.325) + 3572) / 12;
             }
 
             if (employeeSalary >= 80001 && employeeSalary <= 180000)
             {
-                monthlyIncomeTax = (((employeeSalary - 80000) * 0.37)+ 17547) / 12;
+                monthlyIncomeTax = (((employeeSalary - 80000) * 0.37) + 17547) / 12;
             }
 
-            if (employeeSalary >=180001 && employeeSalary >= 180001)
+            if (employeeSalary >= 180001 && employeeSalary >= 180001)
             {
-                monthlyIncomeTax = (((employeeSalary - 180000) * 0.45)+ 54547) / 12;
+                monthlyIncomeTax = (((employeeSalary - 180000) * 0.45) + 54547) / 12;
             }
 
-            var roundedIncomeTax = GetRoundedCalculation(monthlyIncomeTax);
-            var resultString = ToStringConverter(roundedIncomeTax);
+            var roundedIncomeTax = GetRoundedCalculation(monthlyIncomeTax).ToString();
+            //var resultString = ToStringConverter(roundedIncomeTax);
 
-            return resultString;
+            return roundedIncomeTax;
         }
 
         public string GetNetIncome(string income, string tax)
@@ -88,34 +81,35 @@ namespace Payslip
             var incomeTax = ConvertStringToNumber(tax);
 
             var netIncome = grossIncome - incomeTax;
-            var result = GetRoundedCalculation(netIncome);
+            var result = GetRoundedCalculation(netIncome).ToString();
 
-            var resultString = ToStringConverter(result);
+            //var resultString = ToStringConverter(result);
 
-            return resultString;
+            return result;
         }
 
         public string GetSuperAmount(string gross, string payRate)
         {
             var grossIncome = ConvertStringToNumber(gross);
-            var superRate = ConvertStringToNumber(payRate)/100;
+            var superRate = ConvertStringToNumber(payRate) / 100;
 
             var superAmount = grossIncome * superRate;
 
-            var result = GetRoundedCalculation(superAmount);
-            var resultString = ToStringConverter(result);
+            var result = GetRoundedCalculation(superAmount).ToString();
+            //var resultString = ToStringConverter(result);
 
-            return resultString;
+            return result;
         }
 
-        public string ToStringConverter(int grossIncome)
-        {
-            var intIncome = grossIncome;
+        //public string ToStringConverter(int grossIncome)
+        //{
+        //    var intIncome = grossIncome;
 
-            var stringIncome = intIncome.ToString();
+        //    var stringIncome = intIncome.ToString();
 
-            return stringIncome;
-        }
+        //    return stringIncome;
+        //}
 
     }
+
 }

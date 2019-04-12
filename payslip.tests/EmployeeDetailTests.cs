@@ -25,16 +25,7 @@ namespace payslip.tests
             Assert.Equal("David Rudd,01 March – 31 March,5004,922,4082,450", outputStatement);
         }
 
-        [Fact]
-        public void GivenNumberReturnString()
-        {
-            int grossIncome = 5004;
-
-            var incomeInteger = new Calculation();
-            var incomeString = incomeInteger.ToStringConverter(grossIncome);
-
-            Assert.Equal("5004", incomeString);
-        }
+        
 
         [Fact]
         public void GivenNameStringsReturnFullName()
@@ -81,10 +72,9 @@ namespace payslip.tests
         {
             var payRate = "9%";
 
-            var calculator = new Calculation();
-            var rate = calculator.GetTrimmedNumber(payRate);
+            var superRate = payRate.Trim('%');
 
-            Assert.Equal("9", rate);
+            Assert.Equal("9", superRate);
         }
 
         [Fact]
@@ -93,7 +83,7 @@ namespace payslip.tests
             int number = 500;
 
             var converter = new Calculation();
-            var toString = converter.ToStringConverter(number);
+            var toString = number.ToString();
 
             Assert.Equal("500", toString);
         }

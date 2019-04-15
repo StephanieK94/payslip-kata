@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using Xunit;
@@ -25,22 +26,25 @@ namespace payslip.tests
 
             var pathName = $"{path}\\Employee.csv";
 
-            var lines = GetCsvContents(pathName);
+            List<string> lines = GetCsvContents(pathName);
 
-            Assert.Equal("David,Rudd,60050,9%,01 March – 31 March\r\nRyan,Chen,120000,10%,01 March – 31 March", lines);
+            Assert.Equal("David,Rudd,60050,9%,01 March – 31 March", lines[0]);
+            Assert.Equal("Ryan,Chen,120000,10%,01 March – 31 March", lines[1]);
+
         }
 
-        private string GetCsvContents(string pathName)
+
+        private List<string> GetCsvContents(string pathName)
         {
-            string employeeStrings = null;
+            List<string> employeeStrings = new List<string>();
 
             using (var reader = new StreamReader(pathName))
             {
-                while(!reader.EndOfStream)
+                while (!reader.EndOfStream)
                 {
-                    var line = reader.ReadToEnd();
+                    string line = reader.ReadLine();
 
-                    employeeStrings = line;
+                    employeeStrings.Add(line);
                 }
             }
 

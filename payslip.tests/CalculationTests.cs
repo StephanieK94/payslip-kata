@@ -13,7 +13,7 @@ namespace payslip.tests
 
             employee.FirstName = "David";
             employee.LastName = "Rudd";
-            employee.Salary = "60050";
+            employee.Salary = 60050M;
             employee.PayRate = "9%";
             employee.PayPeriod = "01 March – 31 March";
 
@@ -21,18 +21,18 @@ namespace payslip.tests
             
             calculation = calculator.GetCalculations(employee);
 
-            Assert.Equal("5004", calculation.GrossIncome);
-            Assert.Equal("922", calculation.IncomeTax);
-            Assert.Equal("4082", calculation.NetIncome);
-            Assert.Equal("450", calculation.SuperAmount);
+            Assert.Equal(5004, calculation.GrossIncome);
+            Assert.Equal(922, calculation.IncomeTax);
+            Assert.Equal(4082, calculation.NetIncome);
+            Assert.Equal(450, calculation.SuperAmount);
         }
 
         [Fact]
         public void GivenDecimalNumberGetsRoundedNumberToNearestInteger()
         {
-            var pointFourNine = 10.49;
-            var pointFive = 10.5;
-            var pointFiveOne = 10.51;
+            decimal pointFourNine = 10.49M;
+            decimal pointFive = 10.5M;
+            decimal pointFiveOne = 10.51M;
 
             var rounder = new Calculation();
             var roundDown = rounder.GetRoundedCalculationAsInteger(pointFourNine);

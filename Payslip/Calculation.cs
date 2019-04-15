@@ -4,64 +4,62 @@ namespace Payslip
 {
     public class Calculation
     {
-        public int GetRoundedCalculationAsInteger(double calculation)
+        public decimal GetRoundedCalculationAsInteger(decimal calculation)
         {
-            return Convert.ToInt32(Math.Round(calculation, MidpointRounding.AwayFromZero));     //fix to decimal
+            return Convert.ToInt32(Math.Round(calculation, MidpointRounding.AwayFromZero));
         }
 
-        public string GetGrossIncome(string salary)
+        public decimal GetGrossIncome(decimal salary)
         {
-            return GetRoundedCalculationAsInteger(double.Parse(salary) / 12).ToString();
+            return GetRoundedCalculationAsInteger(salary / 12);
         }
 
-        public string GetIncomeTax(string salary)
+        public decimal GetIncomeTax(decimal salary)
         {
-            var employeeSalary = double.Parse(salary);
+            var monthlyIncomeTax = 0M;
 
-            double monthlyIncomeTax = 0;
-
-            if (employeeSalary <= 18200)
+            if (salary <= 18200)
             {
                 monthlyIncomeTax = 0;
             }
 
-            if (employeeSalary >= 18201 && employeeSalary <= 37000)
+            if (salary >= 18201 && salary <= 37000)
             {
-                monthlyIncomeTax = ((employeeSalary - 18200) * 0.19) / 12;
+                monthlyIncomeTax = ((salary - 18200) * 0.19M) / 12;
             }
 
-            if (employeeSalary >= 37001 && employeeSalary <= 80000)
+            if (salary >= 37001 && salary <= 80000)
             {
-                monthlyIncomeTax = (((employeeSalary - 37000) * 0.325) + 3572) / 12;
+                monthlyIncomeTax = (((salary - 37000) * 0.325M) + 3572) / 12;
             }
 
-            if (employeeSalary >= 80001 && employeeSalary <= 180000)
+            if (salary >= 80001 && salary <= 180000)
             {
-                monthlyIncomeTax = (((employeeSalary - 80000) * 0.37) + 17547) / 12;
+                monthlyIncomeTax = (((salary - 80000) * 0.37M) + 17547) / 12;
             }
 
-            if (employeeSalary >= 180001 && employeeSalary >= 180001)
+            if (salary >= 180001 && salary >= 180001)
             {
-                monthlyIncomeTax = (((employeeSalary - 180000) * 0.45) + 54547) / 12;
+                monthlyIncomeTax = (((salary - 180000) * 0.45M) + 54547) / 12;
             }
 
-            return GetRoundedCalculationAsInteger(monthlyIncomeTax).ToString();
+            return GetRoundedCalculationAsInteger(monthlyIncomeTax);
         }
 
-        public string GetNetIncome(string grossIncome, string incomeTax)
+        public decimal GetNetIncome(decimal grossIncome, decimal incomeTax)
         {
-            var netIncome = (double.Parse(grossIncome) - double.Parse(incomeTax));
+            var netIncome = grossIncome - incomeTax;
 
-            return GetRoundedCalculationAsInteger(netIncome).ToString();
+            return GetRoundedCalculationAsInteger(netIncome);
         }
 
-        public string GetSuperAmount(string income, string payRate)
+        public decimal GetSuperAmount(decimal grossIncome, string payRate)
         {
             var superRate = payRate.Trim('%');
 
-            var superAmount = int.Parse(income) * int.Parse(superRate) / 100;
+            var superAmount = grossIncome * decimal.Parse(superRate) / 100;
 
-            return GetRoundedCalculationAsInteger(superAmount).ToString();
+            return GetRoundedCalculationAsInteger(superAmount);
         }
 
         public CalculationInformation GetCalculations(EmployeeInformation employeeInformation)

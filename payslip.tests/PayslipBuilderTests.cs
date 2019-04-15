@@ -21,9 +21,9 @@ namespace payslip.tests
 
             var calculationInformation = calculator.GetCalculations(employee);
 
-            var compiler = new PayslipBuilder();
+            var payslipBuilder = new PayslipBuilder();
 
-            var employeePayslip = compiler.BuildPayslip(employee, calculationInformation);
+            var employeePayslip = payslipBuilder.BuildPayslip(employee, calculationInformation);
 
             Assert.Equal("David Rudd", employeePayslip.FullName);
             Assert.Equal("01 March – 31 March", employeePayslip.PayPeriod);

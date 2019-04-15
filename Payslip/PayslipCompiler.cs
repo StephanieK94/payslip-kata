@@ -18,7 +18,7 @@ namespace Payslip
                 calculations.NetIncome, calculations.SuperAmount
             };
 
-            string employeeStatement = String.Join(",", employeeStrings);
+            var employeeStatement = String.Join(",", employeeStrings);
 
             return employeeStatement;
         }

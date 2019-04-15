@@ -9,8 +9,8 @@ namespace payslip.tests
         [Fact]
         public void GivenEmployeeInformationAndCalculationInformationCompilesStrings()
         {
-            EmployeeInformation employee = new EmployeeInformation();
-            CalculationInformation calculation = new CalculationInformation();
+            var employee = new EmployeeInformation();
+            var calculation = new CalculationInformation();
 
             employee.FirstName = "David";
             employee.LastName = "Rudd";
@@ -33,11 +33,11 @@ namespace payslip.tests
         [Fact]
         public void GivenNameStringsReturnFullName()
         {
-            string firstName = "David";
-            string lastName = "Rudd";
+            var firstName = "David";
+            var lastName = "Rudd";
 
             var fullNameCompiler = new PayslipCompiler();
-            string fullName = fullNameCompiler.GetFullNameFrom(firstName, lastName);
+            var fullName = fullNameCompiler.GetFullNameFrom(firstName, lastName);
 
             Assert.Equal("David Rudd", fullName);
         }

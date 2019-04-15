@@ -8,10 +8,10 @@ namespace Payslip
     {
         static void Main(string[] args)
         {
-            string path = Directory.GetCurrentDirectory();
-            string pathName = Path.GetDirectoryName(path);
+            var path = Directory.GetCurrentDirectory();
+            var pathName = Path.GetDirectoryName(path);
 
-            String[] st = File.ReadAllLines(pathName);
+            var st = File.ReadAllLines(pathName);
             Console.WriteLine(st);
             
         }

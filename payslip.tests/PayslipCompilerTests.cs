@@ -8,8 +8,8 @@ namespace payslip.tests
         [Fact]
         public void GivenEmployeeInformationCalculateCalculationInformationAndCompileStrings()
         {
-            EmployeeInformation employee = new EmployeeInformation();
-            CalculationInformation calculation = new CalculationInformation();
+            var employee = new EmployeeInformation();
+            var calculation = new CalculationInformation();
 
             employee.FirstName = "David";
             employee.LastName = "Rudd";

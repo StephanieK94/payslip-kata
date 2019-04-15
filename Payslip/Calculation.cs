@@ -66,7 +66,7 @@ namespace Payslip
 
         public CalculationInformation GetCalculations(EmployeeInformation employeeInformation)
         {
-            CalculationInformation calculatedEmployee = new CalculationInformation();
+            var calculatedEmployee = new CalculationInformation();
 
             calculatedEmployee.GrossIncome = GetGrossIncome(employeeInformation.Salary);
             calculatedEmployee.IncomeTax = GetIncomeTax(employeeInformation.Salary);

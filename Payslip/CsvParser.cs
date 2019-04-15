@@ -7,19 +7,18 @@ namespace Payslip
     {
         public List<string> GetCsvContents(string pathName)
         {
-            List<string> employeeStrings = new List<string>();
+            var employeeLineItems = new List<string>();
 
             using (var reader = new StreamReader(pathName))
             {
                 while (!reader.EndOfStream)
                 {
-                    string line = reader.ReadLine();
+                    var line = reader.ReadLine();
 
-                    employeeStrings.Add(line);
+                    employeeLineItems.Add(line);
                 }
             }
-
-            return employeeStrings;
+            return employeeLineItems;
         }
     }
 }

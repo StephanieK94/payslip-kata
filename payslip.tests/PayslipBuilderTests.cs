@@ -17,10 +17,6 @@ namespace payslip.tests
                 PayPeriod = "01 March – 31 March"
             };
 
-            var calculator = new TaxIncomeCalculations();
-
-            var calculationInformation = calculator.GetCalculations(employee);
-
             var payslipBuilder = new PayslipBuilder();
 
             var employeePayslip = payslipBuilder.BuildPayslip(employee);

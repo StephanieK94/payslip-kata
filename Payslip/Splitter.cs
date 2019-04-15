@@ -4,15 +4,15 @@
     {
         public EmployeeInformation SplitString(string employee)
         {
-            var foo = employee.Split(',');
+            var split = employee.Split(',');
 
             var employeeInformation = new EmployeeInformation
             {
-                FirstName = foo[0],
-                LastName = foo[1],
-                Salary = decimal.Parse(foo[2]),
-                PayRate = decimal.Parse(foo[3].Trim('%')),
-                PayPeriod = foo[4]
+                FirstName = split[0],
+                LastName = split[1],
+                Salary = decimal.Parse(split[2]),
+                PayRate = decimal.Parse(split[3].Trim('%')),
+                PayPeriod = split[4]
             };
 
             return employeeInformation;

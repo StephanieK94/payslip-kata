@@ -15,9 +15,9 @@ namespace payslip.tests
 
             var pathName = $"{path}\\Employee.csv";
 
-            var expectedFile = File.Exists(pathName);
+            var boolean = File.Exists(pathName) ? "File Exists" : "File does not exist";
 
-            Assert.True(expectedFile);
+            Assert.Equal("File Exists", boolean);
         }
     }
 }

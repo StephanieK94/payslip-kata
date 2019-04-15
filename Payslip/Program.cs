@@ -6,21 +6,19 @@ namespace Payslip
 {
     class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var path = Directory.GetCurrentDirectory();
+            //var path = Directory.GetCurrentDirectory();
 
-            var pathName = $"{path}\\Employee.csv";
+            //var pathName = $"{path}\\Employee.csv";
 
             var csvParser = new CsvParser();
 
-            var companyEmployeeInformation = csvParser.GetCsvContents(pathName);
+            var employeeInformatics = csvParser.GetCsvContents("C:\\Users\\StephanieK\\source\\payslip-kata\\payslip.tests\\bin\\Debug\\netcoreapp2.1\\Employee.csv");
 
             var payslipBuilder = new PayslipBuilder();
 
-            var employeePayslips = new List<EmployeePayslip>();
-
-            employeePayslips = (payslipBuilder.BuildPayslip(companyEmployeeInformation));
+            var employeePayslips = (payslipBuilder.BuildPayslip(employeeInformatics));
 
             Console.WriteLine(employeePayslips);
         }

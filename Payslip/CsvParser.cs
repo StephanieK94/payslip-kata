@@ -9,7 +9,7 @@ namespace Payslip
         {
             var employeeLineItems = new List<EmployeeInformation>();
 
-            using (var reader = new StreamReader(pathName))
+            using (var reader = new StreamReader(@pathName))
             {
                 while (!reader.EndOfStream)
                 {

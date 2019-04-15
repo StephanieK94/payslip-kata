@@ -13,8 +13,9 @@ namespace Payslip
             {
                 while (!reader.EndOfStream)
                 {
-                    var line = reader.ReadLine().Split(',');
+                    var line = reader.ReadLine()?.Split(',');
 
+                    if (line == null) continue;
                     var employeeInformation = new EmployeeInformation
                     {
                         FirstName = line[0],

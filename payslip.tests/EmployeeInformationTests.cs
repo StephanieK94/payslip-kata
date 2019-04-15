@@ -1,4 +1,5 @@
-﻿using Payslip;
+﻿using System.IO;
+using Payslip;
 using Xunit;
 
 namespace payslip.tests
@@ -6,19 +7,20 @@ namespace payslip.tests
     public class EmployeeInformationTests
     {
         [Fact]
-        public void ReadEmployeeInformationAndSplitString()
+        public void ReadCsvInformationAndSplitString()
         {
-            var employee = "David,Rudd,60050,9%,01 March – 31 March";
+            var path = Directory.GetCurrentDirectory();
 
-            var splittingTool = new Splitter();
+            var pathName = $"{path}\\Employee.csv";
+            var parser = new CsvParser();
 
-            var splitEmployee = splittingTool.SplitString(employee);
+            var employeeList = parser.GetCsvContents(pathName);
 
-            Assert.Equal("David", splitEmployee.FirstName);
-            Assert.Equal("Rudd", splitEmployee.LastName);
-            Assert.Equal(60050M, splitEmployee.Salary);
-            Assert.Equal(9, splitEmployee.PayRate);
-            Assert.Equal("01 March – 31 March", splitEmployee.PayPeriod);
+            Assert.Equal("David", employeeList[0].FirstName);
+            Assert.Equal("Rudd", employeeList[0].LastName);
+            Assert.Equal(60050M, employeeList[0].Salary);
+            Assert.Equal(9, employeeList[0].PayRate);
+            Assert.Equal("01 March – 31 March", employeeList[0].PayPeriod);
         }
     }
 }

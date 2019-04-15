@@ -5,9 +5,9 @@ namespace Payslip
 {
     public class CsvParser
     {
-        public List<string> GetCsvContents(string pathName)
+        public List<EmployeeInformation> GetCsvContents(string pathName)
         {
-            var employeeLineItems = new List<string>();
+            var employeeLineItems = new List<EmployeeInformation>();
 
             using (var reader = new StreamReader(pathName))
             {
@@ -15,7 +15,11 @@ namespace Payslip
                 {
                     var line = reader.ReadLine();
 
-                    employeeLineItems.Add(line);
+                    var splitter = new Splitter();
+
+                    var splitLine = splitter.SplitString(line);
+
+                    employeeLineItems.Add(splitLine);
                 }
             }
             return employeeLineItems;

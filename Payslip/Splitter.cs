@@ -19,3 +19,5 @@
         }
     }
 }
+
+// Merge this into the CsvParser so that it splits each line and assigns it into the employeeInformation, will return a List<EmployeeInformation>

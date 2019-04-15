@@ -1,21 +1,32 @@
+using System.Collections.Generic;
+
 namespace Payslip
 {
     public class PayslipBuilder
     {
-        public EmployeePayslip BuildPayslip(EmployeeInformation employee)
+        public List<EmployeePayslip> BuildPayslip(List<EmployeeInformation> employeeList)
         {
-            var calculator = new TaxIncomeCalculations();
-            var employeeCalculations = calculator.GetCalculations(employee);
+            var employeePayslips = new List<EmployeePayslip>();
 
-            var employeePayslips = new EmployeePayslip
+            if (employeeList == null) return employeePayslips;
+
+            foreach (var employee in employeeList)
             {
-                FullName = GetFullNameFrom(employee.FirstName, employee.LastName),
-                PayPeriod = employee.PayPeriod,
-                GrossIncome = employeeCalculations.GrossIncome,
-                IncomeTax = employeeCalculations.IncomeTax,
-                NetIncome = employeeCalculations.NetIncome,
-                SuperAmount = employeeCalculations.SuperAmount
-            };
+                var calculator = new TaxIncomeCalculations();
+                var employeeCalculations = calculator.GetCalculations(employee);
+
+                var payslip = new EmployeePayslip
+                {
+                    FullName = GetFullNameFrom(employee.FirstName, employee.LastName),
+                    PayPeriod = employee.PayPeriod,
+                    GrossIncome = employeeCalculations.GrossIncome,
+                    IncomeTax = employeeCalculations.IncomeTax,
+                    NetIncome = employeeCalculations.NetIncome,
+                    SuperAmount = employeeCalculations.SuperAmount
+                };
+
+                employeePayslips.Add(payslip);
+            }
 
             return employeePayslips;
         }

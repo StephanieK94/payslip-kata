@@ -1,4 +1,5 @@
-﻿using Payslip;
+﻿using System.Collections.Generic;
+using Payslip;
 using Xunit;
 
 namespace payslip.tests
@@ -8,6 +9,8 @@ namespace payslip.tests
         [Fact]
         public void GivenEmployeeInformationCalculateCalculationInformationAndCompileStrings()
         {
+            var listEmployees = new List<EmployeeInformation>();
+
             var employee = new EmployeeInformation
             {
                 FirstName = "David",
@@ -17,16 +20,18 @@ namespace payslip.tests
                 PayPeriod = "01 March – 31 March"
             };
 
+            listEmployees.Add(employee);
+
             var payslipBuilder = new PayslipBuilder();
 
-            var employeePayslip = payslipBuilder.BuildPayslip(employee);
+            var employeePayslip = payslipBuilder.BuildPayslip(listEmployees);
 
-            Assert.Equal("David Rudd", employeePayslip.FullName);
-            Assert.Equal("01 March – 31 March", employeePayslip.PayPeriod);
-            Assert.Equal(5004M, employeePayslip.GrossIncome);
-            Assert.Equal(922M, employeePayslip.IncomeTax);
-            Assert.Equal(4082M, employeePayslip.NetIncome);
-            Assert.Equal(450M, employeePayslip.SuperAmount);
+            Assert.Equal("David Rudd", employeePayslip[0].FullName);
+            Assert.Equal("01 March – 31 March", employeePayslip[0].PayPeriod);
+            Assert.Equal(5004M, employeePayslip[0].GrossIncome);
+            Assert.Equal(922M, employeePayslip[0].IncomeTax);
+            Assert.Equal(4082M, employeePayslip[0].NetIncome);
+            Assert.Equal(450M, employeePayslip[0].SuperAmount);
         }
     }
 }

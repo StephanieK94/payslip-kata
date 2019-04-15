@@ -29,13 +29,15 @@ namespace payslip.tests
 
             var foo = employee.Split(',');
 
-            EmployeeInformation employeeInformation = new EmployeeInformation();
+            var employeeInformation = new EmployeeInformation
+            {
+                FirstName = foo[0],
+                LastName = foo[1],
+                Salary = decimal.Parse(foo[2]),
+                PayRate = foo[3],
+                PayPeriod = foo[4]
+            };
 
-            employeeInformation.FirstName = foo[0];
-            employeeInformation.LastName = foo[1];
-            employeeInformation.Salary = decimal.Parse(foo[2]);
-            employeeInformation.PayRate = foo[3];
-            employeeInformation.PayPeriod = foo[4];
 
             return employeeInformation;
         }

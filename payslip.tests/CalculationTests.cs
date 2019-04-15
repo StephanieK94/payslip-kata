@@ -14,10 +14,10 @@ namespace payslip.tests
             employee.FirstName = "David";
             employee.LastName = "Rudd";
             employee.Salary = 60050M;
-            employee.PayRate = "9%";
+            employee.PayRate = 9M;
             employee.PayPeriod = "01 March – 31 March";
 
-            var calculator = new Calculation();
+            var calculator = new TaxIncomeCalculations();
             
             calculation = calculator.GetCalculations(employee);
 
@@ -34,7 +34,7 @@ namespace payslip.tests
             decimal pointFive = 10.5M;
             decimal pointFiveOne = 10.51M;
 
-            var rounder = new Calculation();
+            var rounder = new TaxIncomeCalculations();
             var roundDown = rounder.GetRoundedCalculationAsInteger(pointFourNine);
             var roundMiddleCalculation = rounder.GetRoundedCalculationAsInteger(pointFive);
             var roundUp = rounder.GetRoundedCalculationAsInteger(pointFiveOne);

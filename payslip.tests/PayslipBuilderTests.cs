@@ -13,11 +13,11 @@ namespace payslip.tests
                 FirstName = "David",
                 LastName = "Rudd",
                 Salary = 60050M,
-                PayRate = "9%",
+                PayRate = 9M,
                 PayPeriod = "01 March – 31 March"
             };
 
-            var calculator = new Calculation();
+            var calculator = new TaxIncomeCalculations();
 
             var calculationInformation = calculator.GetCalculations(employee);
 

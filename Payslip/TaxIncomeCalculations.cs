@@ -2,7 +2,7 @@
 
 namespace Payslip
 {
-    public class Calculation
+    public class TaxIncomeCalculations
     {
         public decimal GetRoundedCalculationAsInteger(decimal calculation)
         {
@@ -53,11 +53,9 @@ namespace Payslip
             return GetRoundedCalculationAsInteger(netIncome);
         }
 
-        public decimal GetSuperAmount(decimal grossIncome, string payRate)
+        public decimal GetSuperAmount(decimal grossIncome, decimal payRate)
         {
-            var superRate = payRate.Trim('%');
-
-            var superAmount = grossIncome * decimal.Parse(superRate) / 100;
+            var superAmount = grossIncome * payRate / 100;
 
             return GetRoundedCalculationAsInteger(superAmount);
         }

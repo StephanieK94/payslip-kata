@@ -24,5 +24,24 @@ namespace payslip.tests
             Assert.Equal("Ryan,Chen,120000,10%,01 March – 31 March", lineItems[1]);
 
         }
+
+        [Fact]
+        public void ReadCsvFileOutputEmployeeInformation()
+        {
+            var path = Directory.GetCurrentDirectory();
+
+            var pathName = $"{path}\\Employee.csv";
+            var parser = new CsvParser();
+
+            var lineItems = parser.GetCsvContents(pathName);
+
+            var splitter = new Splitter();
+
+            //var employeeInformation = new EmployeeInformation();
+
+            var splitItems = splitter.SplitString(lineItems[0]);
+
+            Assert.Equal("David", splitItems.FirstName);
+        }
     }
 }

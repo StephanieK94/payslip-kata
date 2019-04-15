@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Payslip
 {
@@ -6,7 +8,12 @@ namespace Payslip
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string path = Directory.GetCurrentDirectory();
+            string pathName = Path.GetDirectoryName(path);
+
+            String[] st = File.ReadAllLines(pathName);
+            Console.WriteLine(st);
+            
         }
     }
 }

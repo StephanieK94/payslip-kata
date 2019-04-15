@@ -6,7 +6,7 @@ namespace Payslip
     {
         public int GetRoundedCalculationAsInteger(double calculation)
         {
-            return Convert.ToInt32(Math.Round(calculation, MidpointRounding.AwayFromZero));
+            return Convert.ToInt32(Math.Round(calculation, MidpointRounding.AwayFromZero));     //fix to decimal
         }
 
         public string GetGrossIncome(string salary)

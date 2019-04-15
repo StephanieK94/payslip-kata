@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CsvHelper.Excel" Version="1.0.5" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
@@ -14,6 +15,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Payslip\Payslip.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Employee.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

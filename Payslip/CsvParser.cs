@@ -13,13 +13,18 @@ namespace Payslip
             {
                 while (!reader.EndOfStream)
                 {
-                    var line = reader.ReadLine();
+                    var line = reader.ReadLine().Split(',');
 
-                    var splitter = new Splitter();
+                    var employeeInformation = new EmployeeInformation
+                    {
+                        FirstName = line[0],
+                        LastName = line[1],
+                        Salary = decimal.Parse(line[2]),
+                        PayRate = decimal.Parse(line[3].Trim('%')),
+                        PayPeriod = line[4]
+                    };
 
-                    var splitLine = splitter.SplitString(line);
-
-                    employeeLineItems.Add(splitLine);
+                    employeeLineItems.Add(employeeInformation);
                 }
             }
             return employeeLineItems;

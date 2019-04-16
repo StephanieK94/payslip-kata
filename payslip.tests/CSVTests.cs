@@ -59,15 +59,24 @@ namespace payslip.tests
     {
         public List<string> WriteCsv(List<EmployeePayslip> payslipList)
         {
+            var csvList = new List<string>();
             // Input the list of payslip information
             // Need to convert the decimals ToString() and then String.Join(',', the list of strings)
 
             // Something along these lines
+            // would need to change to a list of strings then pass that in to be written
 
+
+
+            // foreach (var employee in payslipList)
+            //{
             //string csv = String.Join(',', payslip.FullName,payslip.PayPeriod,payslip.GrossIncome,payslip.IncomeTax,payslip.NetIncome,payslip.SuperAmount);
+            //}
+            
             //string filePath = "C:\\Users\\StephanieK\\source\\payslip-kata\\payslip.tests\\bin\\Debug\\netcoreapp2.1\\Payslip.csv";
 
             //File.WriteAllText(filePath, csv);
+            return csvList;
         }
     }
 }

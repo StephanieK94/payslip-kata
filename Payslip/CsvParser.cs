@@ -5,18 +5,18 @@ namespace Payslip
 {
     public class CsvParser
     {
-        public List<EmployeeInformation> GetCsvContents(string pathName)
+        public List<Employee> GetCsvContents(string pathName)
         {
-            var employeeLineItems = new List<EmployeeInformation>();
+            var employeeLineItems = new List<Employee>();
 
-            using (var reader = new StreamReader(@pathName))
+            using (var reader = new StreamReader(pathName))
             {
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine()?.Split(',');
 
                     if (line == null) continue;
-                    var employeeInformation = new EmployeeInformation
+                    var employeeInformation = new Employee
                     {
                         FirstName = line[0],
                         LastName = line[1],

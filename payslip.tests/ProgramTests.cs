@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using Xunit;
 
-namespace payslip.tests
+namespace employee.tests
 {
     public class ProgramTests
     {

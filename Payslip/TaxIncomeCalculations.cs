@@ -60,7 +60,7 @@ namespace Payslip
             return GetRoundedCalculationAsInteger(superAmount);
         }
 
-        public CalculationInformation GetCalculations(EmployeeInformation employeeInformation)
+        public CalculationInformation GetPayslipCalculations(Employee employeeInformation)
         {
             var calculatedEmployee = new CalculationInformation
             {
@@ -69,6 +69,7 @@ namespace Payslip
             };
 
             calculatedEmployee.NetIncome = GetNetIncome(calculatedEmployee.GrossIncome, calculatedEmployee.IncomeTax);
+
             calculatedEmployee.SuperAmount =
                 GetSuperAmount(calculatedEmployee.GrossIncome, employeeInformation.PayRate);
 

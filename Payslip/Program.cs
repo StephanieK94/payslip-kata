@@ -8,19 +8,19 @@ namespace Payslip
     {
         private static void Main(string[] args)
         {
-            //var path = Directory.GetCurrentDirectory();
-
-            //var pathName = $"{path}\\Employee.csv";
+            var pathFromName = @"C:\Users\StephanieK\source\payslip-kata\Payslip\Employees.csv";
 
             var csvParser = new CsvParser();
-
-            var employeeInformatics = csvParser.GetCsvContents("C:\\Users\\StephanieK\\source\\payslip-kata\\payslip.tests\\bin\\Debug\\netcoreapp2.1\\Employee.csv");
+            var employeeInformatics = csvParser.GetCsvContents(pathFromName);
 
             var payslipBuilder = new PayslipBuilder();
 
-            var employeePayslips = (payslipBuilder.BuildPayslip(employeeInformatics));
+            List<PayslipStatement> employeePayslips = (payslipBuilder.BuildPayslip(employeeInformatics));
 
-            Console.WriteLine(employeePayslips);
+            var pathToPrintTo = @"C:\Users\StephanieK\source\payslip-kata\Payslip\Payslip-Statements.csv";
+
+            PayslipWriter writer = new PayslipWriter();
+            writer.WritePayslipCsv(employeePayslips, pathToPrintTo);
         }
     }
 }

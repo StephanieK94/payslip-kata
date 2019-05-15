@@ -4,31 +4,31 @@ namespace Payslip
 {
     public class PayslipBuilder
     {
-        public List<EmployeePayslip> BuildPayslip(List<EmployeeInformation> employeeList)
+        public List<PayslipStatement> BuildPayslip(List<Employee> employeeList)
         {
-            var employeePayslips = new List<EmployeePayslip>();
+            var employeePayslipsList = new List<PayslipStatement>();
 
-            if (employeeList == null) return employeePayslips;
+            if (employeeList == null) return employeePayslipsList;
 
             foreach (var employee in employeeList)
             {
-                var calculator = new TaxIncomeCalculations();
-                var employeeCalculations = calculator.GetCalculations(employee);
+                var taxCalculator = new TaxIncomeCalculations();
+                CalculationInformation taxCalculationsForPayslip = taxCalculator.GetPayslipCalculations(employee);
 
-                var payslip = new EmployeePayslip
+                var payslip = new PayslipStatement
                 {
                     FullName = GetFullNameFrom(employee.FirstName, employee.LastName),
                     PayPeriod = employee.PayPeriod,
-                    GrossIncome = employeeCalculations.GrossIncome,
-                    IncomeTax = employeeCalculations.IncomeTax,
-                    NetIncome = employeeCalculations.NetIncome,
-                    SuperAmount = employeeCalculations.SuperAmount
+                    GrossIncome = taxCalculationsForPayslip.GrossIncome,
+                    IncomeTax = taxCalculationsForPayslip.IncomeTax,
+                    NetIncome = taxCalculationsForPayslip.NetIncome,
+                    SuperAmount = taxCalculationsForPayslip.SuperAmount
                 };
 
-                employeePayslips.Add(payslip);
+                employeePayslipsList.Add(payslip);
             }
 
-            return employeePayslips;
+            return employeePayslipsList;
         }
 
         public string GetFullNameFrom(string firstName, string lastName)

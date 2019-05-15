@@ -1,14 +1,14 @@
 ﻿using Payslip;
 using Xunit;
 
-namespace payslip.tests
+namespace employee.tests
 {
     public class CalculationTests
     {
         [Fact]
-        public void GivenEmployeeInformationGetsCalculations()
+        public void GivenEmployeeInformationGetsPayslipCalculations()
         {
-            var employee = new EmployeeInformation();
+            var employee = new Employee();
             var calculation = new CalculationInformation();
 
             employee.FirstName = "David";
@@ -18,8 +18,8 @@ namespace payslip.tests
             employee.PayPeriod = "01 March – 31 March";
 
             var calculator = new TaxIncomeCalculations();
-            
-            calculation = calculator.GetCalculations(employee);
+
+            calculation = calculator.GetPayslipCalculations(employee);
 
             Assert.Equal(5004, calculation.GrossIncome);
             Assert.Equal(922, calculation.IncomeTax);

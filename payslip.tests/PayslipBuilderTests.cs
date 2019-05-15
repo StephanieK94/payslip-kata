@@ -2,16 +2,16 @@
 using Payslip;
 using Xunit;
 
-namespace payslip.tests
+namespace employee.tests
 {
     public class PayslipBuilderTests
     {
         [Fact]
         public void GivenEmployeeInformationCalculateCalculationInformationAndCompileStrings()
         {
-            var listEmployees = new List<EmployeeInformation>();
+            var listEmployees = new List<Employee>();
 
-            var employee = new EmployeeInformation
+            var employee = new Employee
             {
                 FirstName = "David",
                 LastName = "Rudd",

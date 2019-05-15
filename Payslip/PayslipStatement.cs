@@ -1,6 +1,6 @@
 namespace Payslip
 {
-    public class EmployeePayslip
+    public class PayslipStatement
     {
         public string FullName { get; set; }
         public string PayPeriod { get; set; }
